@@ -12,6 +12,17 @@ fn main() {
     let x = 5 + /* 90 + */ 5;
     println!("Is `x` 10 or 100? x = {}", x);
 
+    // In general, the '{}' will be automatically replaced with any
+    // arguments. These will be stringified.
+    println!("--------------------");
+    println!("{} days", 31);
+
+    // Positional arguments can be used. Specifying an integer inside '{}'
+    // determines which additional argument will be replaced. Arguments start
+    // at 0 immediately after the format string.
+    println!("--- Positional arguments ---");
+    println!("{0}, this is {1}, this is {0}", "Alice", "Bob");
+
 
 }
 
