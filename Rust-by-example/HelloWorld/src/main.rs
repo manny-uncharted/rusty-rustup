@@ -23,6 +23,12 @@ fn main() {
     println!("--- Positional arguments ---");
     println!("{0}, this is {1}, this is {0}", "Alice", "Bob");
 
+    // As can be named arguments.
+    println!(" {subject} {verb} {object} ",
+        object="the lazy dog",
+        subject="the quick brown fox",
+        verb="jumps over");
+
 
 }
 
