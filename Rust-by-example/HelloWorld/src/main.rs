@@ -74,6 +74,8 @@ fn main() {
     #[derive(Debug)]
     struct DebugPrintable(i32);
 
+    // All std library types are automatically printable with {:?} too.
+
 
 
 }
