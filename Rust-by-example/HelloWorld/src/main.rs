@@ -1,65 +1,76 @@
 /// Documentation comments are written like this
 /// They are also written like this.
 
-fn main() {
-    println!("Hello, world!");
-    println!("I'm a Rustacean!");
+// Regular comments are written like this
+/*  Block comments are written like this
+and extend beyond a single line */
+
+/**
+ * This is on text formatting and printing
+ * 
+*/
+
+// fn main() {
+//     println!("Hello, world!");
+//     println!("I'm a Rustacean!");
 
 
-    // You can manipulate expressions more easily with block comments
-    // than with line comments. Try deleting the comment delimiters
-    // to change the result:
-    let x = 5 + /* 90 + */ 5;
-    println!("Is `x` 10 or 100? x = {}", x);
+//     // You can manipulate expressions more easily with block comments
+//     // than with line comments. Try deleting the comment delimiters
+//     // to change the result:
+//     let x = 5 + /* 90 + */ 5;
+//     println!("Is `x` 10 or 100? x = {}", x);
 
-    // In general, the '{}' will be automatically replaced with any
-    // arguments. These will be stringified.
-    println!("--------------------");
-    println!("{} days", 31);
+//     // In general, the '{}' will be automatically replaced with any
+//     // arguments. These will be stringified.
+//     println!("--------------------");
+//     println!("{} days", 31);
 
-    // Positional arguments can be used. Specifying an integer inside '{}'
-    // determines which additional argument will be replaced. Arguments start
-    // at 0 immediately after the format string.
-    println!("--- Positional arguments ---");
-    println!("{0}, this is {1}, this is {0}", "Alice", "Bob");
+//     // Positional arguments can be used. Specifying an integer inside '{}'
+//     // determines which additional argument will be replaced. Arguments start
+//     // at 0 immediately after the format string.
+//     println!("--- Positional arguments ---");
+//     println!("{0}, this is {1}, this is {0}", "Alice", "Bob");
 
-    // As can be named arguments.
-    println!(" {subject} {verb} {object} ",
-        object="the lazy dog",
-        subject="the quick brown fox",
-        verb="jumps over");
+//     // As can be named arguments.
+//     println!(" {subject} {verb} {object} ",
+//         object="the lazy dog",
+//         subject="the quick brown fox",
+//         verb="jumps over");
 
-    // Different formatting can be invoked by specifying the format charcater after ':'
-    println!("Base 10: {} ", 69420);
-    println!("Base 2 (binary): {:b} ", 69420);
-    println!("Base 8 (octal): {:o} ", 69420);
-    println!("Base 16 (hex): {:x} ", 69420);
-    println!("Base 16 (hex): {:X} ", 69420);
+//     // Different formatting can be invoked by specifying the format charcater after ':'
+//     println!("Base 10: {} ", 69420);
+//     println!("Base 2 (binary): {:b} ", 69420);
+//     println!("Base 8 (octal): {:o} ", 69420);
+//     println!("Base 16 (hex): {:x} ", 69420);
+//     println!("Base 16 (hex): {:X} ", 69420);
 
-    // You can right-align text with a specified width. This will output "     1". (four white spaces and a "1", for a total width of 5)
-    println!(" {number:>5} ", number=1);
+//     // You can right-align text with a specified width. This will output "     1". (four white spaces and a "1", for a total width of 5)
+//     println!(" {number:>5} ", number=1);
 
-    // You can even use named arguments in the format specifier by appending a '$' to the argument name.
-    println!(" {number:0>width$} ", number=1, width=5);
+//     // You can even use named arguments in the format specifier by appending a '$' to the argument name.
+//     println!(" {number:0>width$} ", number=1, width=5);
 
-    // Rust even checks to make sure the correct number of arguments are used.
-    println!("My name is {0}, {1} {0}", "Bond", "James");
+//     // Rust even checks to make sure the correct number of arguments are used.
+//     println!("My name is {0}, {1} {0}", "Bond", "James");
 
-    // Only types that implement fmt:Display can be formatted with '{}'. User defined types require more complicated handling and do not implement fmt:Display by default.
+//     // Only types that implement fmt:Display can be formatted with '{}'. User defined types require more complicated handling and do not implement fmt:Display by default.
 
-    #[allow(dead_code)]
-    struct Structure(i32);
+//     // #[allow(dead_code)]
+//     // struct Structure(i32);
 
-    // This will not compile because `Structure` does not implement `fmt::Display`.
-    // println!("This struct `{}` won't print...", Structure(3));
+//     // This will not compile because `Structure` does not implement `fmt::Display`.
+//     // println!("This struct `{}` won't print...", Structure(3));
 
-    // For rust 1.58 nd above, you can directly capture the argument from a surrounding variable. Just like the above, this will output  "     1". (four white spaces and a "1", for a total width of 5)
-    let number: f64 = 1.0;
-    let width: usize = 5;
-    println!(" {number:>width$} ");
+//     // For rust 1.58 nd above, you can directly capture the argument from a surrounding variable. Just like the above, this will output  "     1". (four white spaces and a "1", for a total width of 5)
+//     let number: f64 = 1.0;
+//     let width: usize = 5;
+//     println!(" {number:>width$} ");
+   
+// }
 
 
-    /**  
+/**  
      * Debugging Section
      * 
      * All types which want to use std::fmt formatting traits require an implementation to be printable. Automatic implementations are provide for many types such as in the std library. All others must be manually implemented somehow.
@@ -76,13 +87,48 @@ fn main() {
 
     // All std library types are automatically printable with {:?} too.
 
+    // Derive the 'fmt:Debug' implementation for 'Structure'. 'Structure' is a structure which contains a single 'i32'.
+    #[derive(Debug)]
+    struct Structure(i32);
+
+    // Put a 'Structure' inside of the structure 'Deep'. Make it printable also.
+    #[derive(Debug)]
+    struct Deep(Structure);
 
 
+// fn main() {
+//     // Printing with `{:?}` is similar to with `{}`.
+//     println!(" {:?} months in a year. ", 12);
+//     println!(" {:?} ", (3, 4));
+//     println!("{1:?} {0:?} is the {actor:?} name.",
+//              "Slater",
+//              "Christian",
+//              actor="actor's");
+    
+//     // 'Structure' is printable!
+//     println!(" Now {:?} will print! ", Structure(3));
+
+//     // The problem with 'derive' is there is no control over how the results look. What if I want this to show just a '7'?
+//     println!(" Now {:?} will print print! ", Deep(Structure(7)));
+// }
+
+// So 'fmt::Debug' definitely makes this printable but sacrifices some elegance. Rust also provides pretty printing with [:#?].
+
+#[derive(Debug)]
+struct Person<'a> {
+    name: &'a str,
+    age: u8
 }
 
-// Regular comments are written like this
-/*  Block comments are written like this
-and extend beyond a single line */
+fn main() {
+    let name = "Peter";
+    let age = 27;
+    let peter = Person { name, age };
+
+    // Pretty print
+    println!("{:#?}", peter);
+}
+
 
 
 
