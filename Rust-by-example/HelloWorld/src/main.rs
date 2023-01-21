@@ -82,18 +82,18 @@ and extend beyond a single line */
     // struct UnPrintable(i32);
 
     // The `derive` attribute automatically creates the implementation required to make this `struct` printable with `fmt::Debug`.
-    #[derive(Debug)]
-    struct DebugPrintable(i32);
+    // #[derive(Debug)]
+    // struct DebugPrintable(i32);
 
-    // All std library types are automatically printable with {:?} too.
+    // // All std library types are automatically printable with {:?} too.
 
-    // Derive the 'fmt:Debug' implementation for 'Structure'. 'Structure' is a structure which contains a single 'i32'.
-    #[derive(Debug)]
-    struct Structure(i32);
+    // // Derive the 'fmt:Debug' implementation for 'Structure'. 'Structure' is a structure which contains a single 'i32'.
+    // #[derive(Debug)]
+    // struct Structure(i32);
 
-    // Put a 'Structure' inside of the structure 'Deep'. Make it printable also.
-    #[derive(Debug)]
-    struct Deep(Structure);
+    // // Put a 'Structure' inside of the structure 'Deep'. Make it printable also.
+    // #[derive(Debug)]
+    // struct Deep(Structure);
 
 
 // fn main() {
@@ -137,6 +137,12 @@ and extend beyond a single line */
  * 
  */
 
- 
+// Import (via 'use') the 'fmt' module to make it available.
+
+fn main() {
+    use std::fmt;
+    
+    // Define a structure for which 'fmt::Display' will be implemented. This is a tuple struct named 'Structure' that contains an 'i32'.
+    struct Structure(i32);
 
 
