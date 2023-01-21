@@ -29,6 +29,12 @@ fn main() {
         subject="the quick brown fox",
         verb="jumps over");
 
+        // Different formatting can be invoked by specifying the format charcater after ':'
+        println!("Base 10: {} ", 69420);
+        println!("Base 2 (binary): {:b} ", 69420);
+        println!("Base 8 (octal): {:o} ", 69420);
+        println!("Base 16 (hex): {:x} ", 69420);
+        println!("Base 16 (hex): {:X} ", 69420);
 
 }
 
