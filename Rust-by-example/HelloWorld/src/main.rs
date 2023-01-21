@@ -57,6 +57,25 @@ fn main() {
     let number: f64 = 1.0;
     let width: usize = 5;
     println!(" {number:>width$} ");
+
+
+    /**  
+     * Debugging Section
+     * 
+     * All types which want to use std::fmt formatting traits require an implementation to be printable. Automatic implementations are provide for many types such as in the std library. All others must be manually implemented somehow.
+     * The fmt::Debug trait makes this very straight forward. All types can derive the fmt::Debug implementation. This is not true for fmt::Display which must be manually implemented.
+     * 
+    */
+
+    // This structure cannot be printed with either `fmt::Display` or `fmt::Debug`.
+    // struct UnPrintable(i32);
+
+    // The `derive` attribute automatically creates the implementation required to make this `struct` printable with `fmt::Debug`.
+    #[derive(Debug)]
+    struct DebugPrintable(i32);
+
+
+
 }
 
 // Regular comments are written like this
