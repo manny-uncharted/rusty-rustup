@@ -165,3 +165,15 @@ and extend beyond a single line */
 
 
 use std::fmt; // Import 'fmt'
+
+// A structure holding two numbers. 'Debug' will be derived so the results can be contrasted with 'Display'.
+#[derive(Debug)]
+struct MinMax(i64, i64);
+
+// Implement 'Display' for 'MinMax'.
+impl fmt::Display for MinMax {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // Use 'self.number to refer to each positional data point.
+        write!(f, "({}, {})", self.0, self.1)
+    }
+}
