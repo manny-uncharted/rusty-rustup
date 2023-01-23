@@ -139,19 +139,29 @@ and extend beyond a single line */
 
 // Import (via 'use') the 'fmt' module to make it available.
 
-fn main() {
-    use std::fmt;
+// fn main() {
+//     use std::fmt;
     
-    // Define a structure for which 'fmt::Display' will be implemented. This is a tuple struct named 'Structure' that contains an 'i32'.
-    struct Structure(i32);
+//     // Define a structure for which 'fmt::Display' will be implemented. This is a tuple struct named 'Structure' that contains an 'i32'.
+//     struct Structure(i32);
 
-    // To use the '{}' marker, the trait 'fmt::Display' must be implemented manually for the type.
-    impl fmt::Display for Structure {
-        // This trait requires 'fmt' with this exact signature.
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            // Write strictly the first element into the supplied output stream: 'f'. Returns 'fmt::Result' which indicates whether the operation succeeded or failed. Note that 'write!' uses syntax which is very similar to 'println!'.
-            write!(f, "{}", self.0)
-        }
-    }
+//     // To use the '{}' marker, the trait 'fmt::Display' must be implemented manually for the type.
+//     impl fmt::Display for Structure {
+//         // This trait requires 'fmt' with this exact signature.
+//         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+//             // Write strictly the first element into the supplied output stream: 'f'. Returns 'fmt::Result' which indicates whether the operation succeeded or failed. Note that 'write!' uses syntax which is very similar to 'println!'.
+//             write!(f, "{}", self.0)
+//         }
+//     }
 
-}
+// }
+
+// fmt::Display may be cleaner than fmt::Debug but this presents a problem for the std library. How should ambiguous types be displayed? For example, if the std library implemented a single style for all Vec<T>, what style should it be? Would it be either of these two?
+// Vec<path>: /:/etc:/home/username:/bin (split on :)
+// Vec<number>: 1,2,3 (split on ,)
+// No, because there is no ideal style for all types and the std library doesn't presume to dictate one. fmt::Display is not implemented for Vec<T> or for any other generic containers. fmt::Debug must then be used for these generic cases.
+
+// This is not a problem though because for any new container type which is not generic,fmt::Display can be implemented.
+
+
+use std::fmt; // Import 'fmt'
