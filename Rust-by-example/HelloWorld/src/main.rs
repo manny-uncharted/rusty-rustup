@@ -177,3 +177,10 @@ impl fmt::Display for MinMax {
         write!(f, "({}, {})", self.0, self.1)
     }
 }
+
+// Define a structure where the fields are nameable for comparison.
+#[derive(Debug)]
+struct Point2D {
+    x: f64,
+    y: f64,
+}
