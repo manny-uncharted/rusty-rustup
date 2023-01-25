@@ -197,4 +197,13 @@ fn main() {
     let minmax = MinMax(0, 14);
 
     println!("Compare structures:");
+    println!("Display: {}", minmax);
+    println!("Debug {:?}", minmax);
+
+    let big_range = MinMax(-300, 300);
+    let small_range = MinMax(-3, 3);
+
+    println!("The big range is {big} and the small is {small}",
+        small = small_range,
+        big = big_range);
 }
