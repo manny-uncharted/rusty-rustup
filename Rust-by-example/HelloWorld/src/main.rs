@@ -206,4 +206,14 @@ fn main() {
     println!("The big range is {big} and the small is {small}",
         small = small_range,
         big = big_range);
+
+    let point = Point2D { x: 3.3, y: 7.2 };
+    println!("Compare points:");
+    println!("Display: {}", point);
+    println!("Debug: {:?}", point);
+
+    // Error, Both `Debug` and `Display` were implemented but `{:b}` requires `fmt::Binary` to be implemented. This will not work.
+    // println!("What does Point2D look like in binary: {:b}?", point);
+
+    // So, fmt::Display has been implemented but fmt::Binary has not, and therefore cannot be used. std::fmt has many such traits and each requires its own implementation. This is detailed further in std::fmt.
 }
