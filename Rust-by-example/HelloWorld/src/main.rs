@@ -193,6 +193,20 @@ impl fmt::Display for Point2D {
     }
 }
 
+// Complex struct
+#[derive(Debug)] 
+struct Complex {
+    real: f64,
+    imaginary: f64,
+}
+
+impl fmt::Display for Complex {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // Customize so only 'real' and 'imaginary' are denoted.
+        write!(f, "real: {}, imaginary: {}i", self.real, self.imaginary)
+    }
+}
+
 fn main() {
     let minmax = MinMax(0, 14);
 
@@ -216,4 +230,12 @@ fn main() {
     // println!("What does Point2D look like in binary: {:b}?", point);
 
     // So, fmt::Display has been implemented but fmt::Binary has not, and therefore cannot be used. std::fmt has many such traits and each requires its own implementation. This is detailed further in std::fmt.
+
+    // Activity 
+    // After checking the output of the above example, use the 'Point2D' struct as a guide to add a Complex struct to the example. when printed in the same way.
+    let complex = Complex { real: 3.3, imaginary: 7.2};
+    println!("Compare complex numbers:");
+    println!("Display: {}", complex);
+    println!("Debug: {:?}", complex);
+
 }
