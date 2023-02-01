@@ -249,31 +249,58 @@ Using ? on write! looks like this:
  * 
  */
 
- use std::fmt; // Import the 'fmt' module
+//  use std::fmt; // Import the 'fmt' module
 
- // Define a structure named 'list' containing a 'vec'
- struct List(Vec<i32>);
+//  // Define a structure named 'list' containing a 'vec'
+//  struct List(Vec<i32>);
 
- impl fmt::Display for List {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        // Extract the value using tuple indexing, and create a reference to 'vec'
-        let vec = &self.0;
+//  impl fmt::Display for List {
+//     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+//         // Extract the value using tuple indexing, and create a reference to 'vec'
+//         let vec = &self.0;
 
-        write!(f, "[")?;
+//         write!(f, "[")?;
 
-        // Iterate over 'v' in 'vec' while enumerating the iteration count in 'count'
-        for (count, v) in vec.iter().enumerate() {
-            // For every element except the first, add a comma. Use the ? operator to return on errors.
-            if count != 0 { write!(f, ", ")?; }
-            write!(f, "{}", v)?;
-        }
+//         // Iterate over 'v' in 'vec' while enumerating the iteration count in 'count'
+//         for (count, v) in vec.iter().enumerate() {
+//             // For every element except the first, add a comma. Use the ? operator to return on errors.
+//             if count != 0 { write!(f, ", ")?; }
+//             write!(f, "{}", v)?;
+//         }
 
-        // Close the opened bracket and return a fmt::Result value
-        write!(f, "]")
-    }
- }
+//         // Close the opened bracket and return a fmt::Result value
+//         write!(f, "]")
+//     }
+//  }
 
- fn main() {
-    let v = List(vec![1, 2, 3]);
-    println!("{}", v);
- }
+//  fn main() {
+//     let v = List(vec![1, 2, 3]);
+//     println!("{}", v);
+//  }
+
+
+/**
+ *  Formatting 
+ * We've seen that formatting is specified via a format string:
+ * format!("{}", foo) -> "3735928559"
+ *  format!("0x{:X}", foo) -> "0xDEADBEEF"
+ * format!("0o{:o}", foo) -> "0o33653337357"
+ * 
+ * The same variable(foo) can be formatted differently depending on which argument type is used X vs o vs unspecified.
+ * This formatting functionaluty is implemented via traits, and there is one trait for each argument type. The most common formatting trait is 'Display' which handles cases where the argument type is left unspecified: {} for instance.
+ * 
+ */
+
+use std::fmt::(self, Formatter, Display); // Import the 'fmt' module the Formatter trait and the Display trait
+
+Struct City {
+    name: &'static str,
+    // Latitude
+    lat: f32,
+    // Longitude
+    lon: f32,
+}
+
+impl Display for City {
+    
+}
