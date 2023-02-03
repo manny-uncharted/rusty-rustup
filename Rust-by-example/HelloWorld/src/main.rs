@@ -1,13 +1,13 @@
-/// Documentation comments are written like this
-/// They are also written like this.
+//Documentation comments are written like this
+//They are also written like this.
 
 // Regular comments are written like this
 /*  Block comments are written like this
 and extend beyond a single line */
 
-/**
- * This is on text formatting and printing
- * 
+/*
+ This is on text formatting and printing
+ 
 */
 
 // fn main() {
@@ -70,13 +70,13 @@ and extend beyond a single line */
 // }
 
 
-/**  
-     * Debugging Section
-     * 
-     * All types which want to use std::fmt formatting traits require an implementation to be printable. Automatic implementations are provide for many types such as in the std library. All others must be manually implemented somehow.
-     * The fmt::Debug trait makes this very straight forward. All types can derive the fmt::Debug implementation. This is not true for fmt::Display which must be manually implemented.
-     * 
-    */
+/* 
+    Debugging Section
+    
+    All types which want to use std::fmt formatting traits require an implementation to be printable. Automatic implementations are provide for many types such as in the std library. All others must be manually implemented somehow.
+    The fmt::Debug trait makes this very straight forward. All types can derive the fmt::Debug implementation. This is not true for fmt::Display which must be manually implemented.
+     
+*/
 
     // This structure cannot be printed with either `fmt::Display` or `fmt::Debug`.
     // struct UnPrintable(i32);
@@ -131,10 +131,10 @@ and extend beyond a single line */
 
 
 
-/**
- *  Display
- * 'fmt::Display' is similar to 'fmt::Debug' but it is much compact and clean and makes it possible to customize the output appearance. This is done by using the print marker {}.
- * 
+/*
+  Display
+ 'fmt::Display' is similar to 'fmt::Debug' but it is much compact and clean and makes it possible to customize the output appearance. This is done by using the print marker {}.
+ 
  */
 
 // Import (via 'use') the 'fmt' module to make it available.
@@ -242,11 +242,11 @@ and extend beyond a single line */
 
 
 
-/**
- * Testcase: List
- * Implementing fmt::Display for a structure where the elements must each be handled sequentially is tricky. The problem is that each write! generates a fmt::Result. Proper handling of this requires dealing with all the results. Rust provides the ? operator for exactly this purpose.
+/*
+ Testcase: List
+ Implementing fmt::Display for a structure where the elements must each be handled sequentially is tricky. The problem is that each write! generates a fmt::Result. Proper handling of this requires dealing with all the results. Rust provides the ? operator for exactly this purpose.
 Using ? on write! looks like this:
- * 
+ 
  */
 
 //  use std::fmt; // Import the 'fmt' module
@@ -279,21 +279,21 @@ Using ? on write! looks like this:
 //  }
 
 
-/**
- *  Formatting 
- * We've seen that formatting is specified via a format string:
- * format!("{}", foo) -> "3735928559"
- *  format!("0x{:X}", foo) -> "0xDEADBEEF"
- * format!("0o{:o}", foo) -> "0o33653337357"
- * 
- * The same variable(foo) can be formatted differently depending on which argument type is used X vs o vs unspecified.
- * This formatting functionaluty is implemented via traits, and there is one trait for each argument type. The most common formatting trait is 'Display' which handles cases where the argument type is left unspecified: {} for instance.
- * 
+/*
+ Formatting 
+ We've seen that formatting is specified via a format string:
+ format!("{}", foo) -> "3735928559"
+ format!("0x{:X}", foo) -> "0xDEADBEEF"
+ format!("0o{:o}", foo) -> "0o33653337357"
+ 
+  The same variable(foo) can be formatted differently depending on which argument type is used X vs o vs unspecified.
+ This formatting functionaluty is implemented via traits, and there is one trait for each argument type. The most common formatting trait is 'Display' which handles cases where the argument type is left unspecified: {} for instance.
+ 
  */
 
-use std::fmt::(self, Formatter, Display); // Import the 'fmt' module the Formatter trait and the Display trait
+use std::fmt::{self, Formatter, Display};
 
-Struct City {
+struct City {
     name: &'static str,
     // Latitude
     lat: f32,
@@ -302,12 +302,13 @@ Struct City {
 }
 
 impl Display for City {
-    // 'f' is a buffer, and this method must write the formatted string into it.
+    // `f` is a buffer, and this method must write the formatted string into it
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        let lat_c = if self.lat >= 0.0 { 'N' } else { 'S'};
-        let lon_c = if self.lon >= 0.0 { 'E' } else { 'W'};
+        let lat_c = if self.lat >= 0.0 { 'N' } else { 'S' };
+        let lon_c = if self.lon >= 0.0 { 'E' } else { 'W' };
 
-        // 'write!' is like 'format!' but it will write the formatted string into a buffer (the first argument)
+        // `write!` is like `format!`, but it will write the formatted string
+        // into a buffer (the first argument)
         write!(f, "{}: {:.3}°{} {:.3}°{}",
             self.name, self.lat.abs(), lat_c, self.lon.abs(), lon_c)
     }
@@ -319,26 +320,22 @@ struct Color {
     green: u8,
     blue: u8,
 }
-
+ 
 fn main() {
     for city in [
         City { name: "Dublin", lat: 53.347778, lon: -6.259722 },
         City { name: "Oslo", lat: 59.95, lon: 10.75 },
         City { name: "Vancouver", lat: 49.25, lon: -123.1 },
     ].iter() {
-        println!("{}", city);
+        println!("{}", *city);
     }
-
     for color in [
         Color { red: 128, green: 255, blue: 90 },
         Color { red: 0, green: 3, blue: 254 },
         Color { red: 0, green: 0, blue: 0 },
     ].iter() {
-        // Switch this to use {} once you've added an implementation for fmt::Display
+        // Switch this to use {} once you've added an implementation
+        // for fmt::Display.
         println!("{:?}", color);
     }
-
-
-    // Activity
-    // Add an implementation of the fmt::Display trait for the Color struct above so that the output displays as:
 }
