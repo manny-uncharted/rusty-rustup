@@ -376,4 +376,14 @@ fn main() {
     // A type can also be inferred from context
     let mut inferred_type = 12; // Type i64 is inferred from another line
     inferred_type = 4294967296i64;
+
+    // A mutable variable's value can be changed.
+    let mut mutable = 12; // Mutable 'i32'
+    mutable = 21;
+
+    // Error! The type of a variable can't be changed.
+    // mutable = true;
+
+    // Variables can be overwritten with shadowing.
+    let mutable = true;
 }
